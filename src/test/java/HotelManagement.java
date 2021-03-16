@@ -11,9 +11,9 @@ public class HotelManagement {
 
     HotelReservation hotelReservation = new HotelReservation();
 
-    Hotel lakewood = new Hotel("Lakewood", 110);
-    Hotel bridgewood = new Hotel("Bridgewood", 150);
-    Hotel ridgewood = new Hotel("Ridgewood", 220);
+    Hotel lakewood = new Hotel("Lakewood", 110, 90);
+    Hotel bridgewood = new Hotel("Bridgewood", 150, 50);
+    Hotel ridgewood = new Hotel("Ridgewood", 220, 150);
 
     @BeforeEach
     public void addHotelTest() {
