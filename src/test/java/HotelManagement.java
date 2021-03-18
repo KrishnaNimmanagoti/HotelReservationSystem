@@ -35,9 +35,10 @@ public class HotelManagement {
 
     @Test
     public void CheapestHotelInGivenDates() {
-        LocalDate d1 = LocalDate.parse("2020-09-11");
-        LocalDate d2 = LocalDate.parse("2020-09-12");
-        int result = hotelReservation.findCheapestHotelInGivenDateRange(d1, d2);
+        LocalDate startDate = LocalDate.parse("2020-09-11");
+        LocalDate endDate = LocalDate.parse("2020-09-12");
+        int result = hotelReservation.findCheapestHotelInGivenDateRange(startDate, endDate);
         Assertions.assertEquals(200, result);
+        hotelReservation.findByRating();
     }
 }
