@@ -28,8 +28,16 @@ public class HotelManagement {
 
     @Test
     public void findCheapestHotel() {
-        hotelReservation.printHotels();
-        long rate = hotelReservation.findCheapestHotel1(LocalDate.parse("2020-10-10"), LocalDate.parse("2020-10-11"));
+        long rate = hotelReservation.findCheapestHotel(LocalDate.parse("2020-10-10"), LocalDate.parse("2020-10-11"));
         Assertions.assertEquals(220, rate);
+
+    }
+
+    @Test
+    public void CheapestHotelInGivenDates() {
+        LocalDate d1 = LocalDate.parse("2020-09-11");
+        LocalDate d2 = LocalDate.parse("2020-09-12");
+        int result = hotelReservation.findCheapestHotelInGivenDateRange(d1, d2);
+        Assertions.assertEquals(200, result);
     }
 }
