@@ -42,17 +42,29 @@ public class HotelManagement {
     }
 
     @Test
-    public void findByRatingTest() {
+    public void TestfindCheapestBestRatedHotelForRegular() {
         LocalDate startDate = LocalDate.parse("2020-09-11");
         LocalDate endDate = LocalDate.parse("2020-09-12");
-        hotelReservation.findCheapestBestRatedHotel(startDate, endDate);
+        hotelReservation.findCheapestBestRatedHotelForRegular(startDate, endDate);
     }
 
     @Test
-    public void TestFindBestRatedHotel() {
+    public void TestfindBestRatedHotelForRegularCustomer() {
         LocalDate startDate = LocalDate.parse("2020-09-11");
         LocalDate endDate = LocalDate.parse("2020-09-12");
-        hotelReservation.findBestRatedHotel(startDate, endDate);
+        hotelReservation.findBestRatedHotelForRegularCustomer(startDate, endDate);
     }
 
+    @Test
+    public void TestfindCheapestBestRatedHotelForReward() {
+
+        try {
+            hotelReservation.findCheapestBestRatedHotelForReward("2020-9-11", "2020-09-12");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid Entries");
+        }
+        catch (java.time.format.DateTimeParseException e) {
+            System.out.println("Invalid Entries");
+        }
+    }
 }

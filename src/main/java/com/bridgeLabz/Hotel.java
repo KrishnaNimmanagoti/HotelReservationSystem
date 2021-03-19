@@ -1,18 +1,21 @@
 package com.bridgeLabz;
 
 public class Hotel {
-    String hotelName;
-    int weekDayRate;
-    int weekEndRate;
-    int sum;
-    double rating;
-    int rewardCustomerWeedDayRate;
-    int rewardCustomerWeedEndRate;
+    public String hotelName;
+    public int regularWeekDayRate;
+    public int regularWeekEndRate;
+    public int rewardCustomerWeedDayRate;
+    public int rewardCustomerWeedEndRate;
+    public int totalRegularRate;
+    public int totalRewardedRate;
+    public double rating;
 
-    public Hotel(String hotelName, int weekDayRate, int weekEndRate, double rating, int rewardCustomerWeedDayRate, int rewardCustomerWeedEndRate) {
+    public Hotel(String hotelName, int regularWeekDayRate, int regularWeekEndRate, double rating, int rewardCustomerWeedDayRate, int rewardCustomerWeedEndRate) {
         this.hotelName = hotelName;
-        this.weekDayRate = weekDayRate;
-        this.weekEndRate = weekEndRate;
+        this.regularWeekDayRate = regularWeekDayRate;
+        this.regularWeekEndRate = regularWeekEndRate;
+        this.rewardCustomerWeedDayRate = rewardCustomerWeedDayRate;
+        this.rewardCustomerWeedEndRate = rewardCustomerWeedEndRate;
         this.rating = rating;
     }
 }
