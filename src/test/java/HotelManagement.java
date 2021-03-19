@@ -1,3 +1,4 @@
+import com.bridgeLabz.CustomException;
 import com.bridgeLabz.Hotel;
 import com.bridgeLabz.HotelReservation;
 import org.junit.jupiter.api.Assertions;
@@ -5,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class HotelManagement {
@@ -42,10 +44,19 @@ public class HotelManagement {
     }
 
     @Test
-    public void TestfindCheapestBestRatedHotelForRegular() {
-        LocalDate startDate = LocalDate.parse("2020-09-11");
-        LocalDate endDate = LocalDate.parse("2020-09-12");
-        hotelReservation.findCheapestBestRatedHotelForRegular(startDate, endDate);
+    public void TestfindCheapestBestRatedHotelForRegular() throws CustomException {
+        String startDate = "2020-09-11";
+        String endDate = "2020-09-12";
+        String pattern = "([0-9]{4})-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])";
+        if (startDate.matches(pattern) && endDate.matches(pattern)) {
+            try {
+                hotelReservation.findCheapestBestRatedHotelForRegular("2020-09-11", "2020-09-12");
+            } catch (IllegalArgumentException | DateTimeParseException e) {
+                System.out.println("Invalid Entries");
+            }
+        } else {
+            throw new CustomException("Invalid Entries");
+        }
     }
 
     @Test
@@ -56,15 +67,18 @@ public class HotelManagement {
     }
 
     @Test
-    public void TestfindCheapestBestRatedHotelForReward() {
-
-        try {
-            hotelReservation.findCheapestBestRatedHotelForReward("2020-9-11", "2020-09-12");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Invalid Entries");
-        }
-        catch (java.time.format.DateTimeParseException e) {
-            System.out.println("Invalid Entries");
+    public void TestfindCheapestBestRatedHotelForReward() throws CustomException {
+        String startDate = "2020-09-11";
+        String endDate = "2020-09-12";
+        String pattern = "([0-9]{4})-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])";
+        if (startDate.matches(pattern) && endDate.matches(pattern)) {
+            try {
+                hotelReservation.findCheapestBestRatedHotelForReward("2020-09-11", "2020-09-12");
+            } catch (IllegalArgumentException | DateTimeParseException e) {
+                System.out.println("Invalid Entries");
+            }
+        } else {
+            throw new CustomException("Invalid Entries");
         }
     }
 }

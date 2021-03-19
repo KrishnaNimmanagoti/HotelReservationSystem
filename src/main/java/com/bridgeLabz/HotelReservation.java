@@ -1,7 +1,5 @@
 package com.bridgeLabz;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -24,9 +22,9 @@ public class HotelReservation {
         return hotels;
     }
 
-    public void printHotels() {
-        hotels.stream().forEach(hotel -> System.out.println(hotel.hotelName+ " " + hotel.regularWeekDayRate));
-    }
+//    public void printHotels() {
+//        hotels.stream().forEach(hotel -> System.out.println(hotel.hotelName+ " " + hotel.regularWeekDayRate));
+//    }
 
     public long findCheapestHotel(LocalDate d1, LocalDate d2) {
         long noOfDaysBetween = ChronoUnit.DAYS.between(d1, d2);
@@ -53,10 +51,7 @@ public class HotelReservation {
                 }
             }
         }
-//        for (Hotel hotel: hotels) {
-//                System.out.println(hotel.hotelName+" "+hotel.sum);
-//        }
-         result1 = hotels.get(0);
+        result1 = hotels.get(0);
         for (Hotel value : hotels) {
             if (result1.totalRegularRate > value.totalRegularRate) {
                 result1 = value;
@@ -96,15 +91,14 @@ public class HotelReservation {
     }
 
     //UC-10 Method
-    public void findCheapestBestRatedHotelForRegular(LocalDate startDate, LocalDate endDate) {
-        calculateTotalRateByDate(startDate, endDate);
+    public void findCheapestBestRatedHotelForRegular(String startDate, String endDate) {
+        this.startDate = LocalDate.parse(startDate);
+        this.endDate = LocalDate.parse(endDate);
+        calculateTotalRateByDate(this.startDate, this.endDate);
         Double maxValueInMap = (Collections.max(regularRateHotelsRating.values()));
         System.out.println("The Cheapest Best Rated Hotel is ::");
-        for (Map.Entry<String, Double> entry : regularRateHotelsRating.entrySet()) {
-            if (entry.getValue().equals(maxValueInMap)) {
-                System.out.println(entry.getKey() + ", Rating: " + entry.getValue() + " And Total Rates: " + result1.totalRegularRate +"\n");     // Print the key with max value
-            }
-        }
+        regularRateHotelsRating.entrySet().stream().filter(t -> t.getValue().equals(maxValueInMap))
+                .forEach(t -> System.out.println(t.getKey() + ", Rating: " + t.getValue() + " And Total Rates: " + result2.totalRegularRate +"\n"));
     }
 
     public void findCheapestBestRatedHotelForReward(String startDate, String endDate) {
@@ -113,18 +107,14 @@ public class HotelReservation {
         calculateTotalRateByDate(this.startDate, this.endDate);
         Double maxValueInMap = (Collections.max(rewardedRateHotelsRating.values()));
         System.out.println("\nThe Cheapest Best Rated Hotel is ::");
-        for (Map.Entry<String, Double> entry : rewardedRateHotelsRating.entrySet()) {
-            if (entry.getValue().equals(maxValueInMap)) {
-                System.out.println(entry.getKey() + ", Rating: " + entry.getValue() + " And Total Rates: " + result2.totalRewardedRate +"\n");     // Print the key with max value
-            }
-        }
+        rewardedRateHotelsRating.entrySet().stream().filter(t -> t.getValue().equals(maxValueInMap))
+                .forEach(t -> System.out.println(t.getKey() + ", Rating: " + t.getValue() + " And Total Rates: " + result2.totalRewardedRate +"\n"));
     }
 
-    public Hotel findBestRatedHotelForRegularCustomer(LocalDate startDate, LocalDate endDate) {
+    public void findBestRatedHotelForRegularCustomer(LocalDate startDate, LocalDate endDate) {
         calculateTotalRateByDate(startDate, endDate);
         Hotel bestRated = Collections.max(hotels, Comparator.comparing(hotel -> hotel.rating));
         System.out.print("\nBest Rated For regular");
         System.out.println("\nHotel Name: " + bestRated.hotelName + ", Total Rate: " + bestRated.totalRegularRate + "\n");
-        return bestRated;
     }
 }
